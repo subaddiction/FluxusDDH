@@ -3,7 +3,7 @@
 
 (start-audio "system:capture_1" 512 44100)
 
-(midiin-open 1)
+;(midiin-open 1)
 
 (gain 0.5)
 
@@ -23,8 +23,9 @@
 (define GreenLightness 0.25)
 (define BlueLightness 0.25)
 
+(define numParticles 540)
 
-(define max_clients 23)
+(define max_clients 31)
 (define launchClient 0)
 
 (define clients (make-vector 0))
@@ -41,73 +42,73 @@
 
 ;(define Psystems (build-vector 8 add1))
 
-(define psys0 (with-state (build-particles 720)))
-(define psys1 (with-state (build-particles 720)))
-(define psys2 (with-state (build-particles 720)))
-(define psys3 (with-state (build-particles 720)))
-(define psys4 (with-state (build-particles 720)))
-(define psys5 (with-state (build-particles 720)))
-(define psys6 (with-state (build-particles 720)))
-(define psys7 (with-state (build-particles 720)))
-(define psys8 (with-state (build-particles 720)))
-(define psys9 (with-state (build-particles 720)))
-(define psys10 (with-state (build-particles 720)))
-(define psys11 (with-state (build-particles 720)))
-(define psys12 (with-state (build-particles 720)))
-(define psys13 (with-state (build-particles 720)))
-(define psys14 (with-state (build-particles 720)))
-(define psys15 (with-state (build-particles 720)))
-(define psys16 (with-state (build-particles 720)))
-(define psys17 (with-state (build-particles 720)))
-(define psys18 (with-state (build-particles 720)))
-(define psys19 (with-state (build-particles 720)))
-(define psys20 (with-state (build-particles 720)))
-(define psys21 (with-state (build-particles 720)))
-(define psys22 (with-state (build-particles 720)))
-(define psys23 (with-state (build-particles 720)))
-;(define psys24 (with-state (build-particles 768)))
-;(define psys25 (with-state (build-particles 768)))
-;(define psys26 (with-state (build-particles 768)))
-;(define psys27 (with-state (build-particles 768)))
-;(define psys28 (with-state (build-particles 768)))
-;(define psys29 (with-state (build-particles 768)))
-;(define psys30 (with-state (build-particles 768)))
-;(define psys31 (with-state (build-particles 768)))
+(define psys0 (with-state (build-particles numParticles)))
+(define psys1 (with-state (build-particles numParticles)))
+(define psys2 (with-state (build-particles numParticles)))
+(define psys3 (with-state (build-particles numParticles)))
+(define psys4 (with-state (build-particles numParticles)))
+(define psys5 (with-state (build-particles numParticles)))
+(define psys6 (with-state (build-particles numParticles)))
+(define psys7 (with-state (build-particles numParticles)))
+(define psys8 (with-state (build-particles numParticles)))
+(define psys9 (with-state (build-particles numParticles)))
+(define psys10 (with-state (build-particles numParticles)))
+(define psys11 (with-state (build-particles numParticles)))
+(define psys12 (with-state (build-particles numParticles)))
+(define psys13 (with-state (build-particles numParticles)))
+(define psys14 (with-state (build-particles numParticles)))
+(define psys15 (with-state (build-particles numParticles)))
+(define psys16 (with-state (build-particles numParticles)))
+(define psys17 (with-state (build-particles numParticles)))
+(define psys18 (with-state (build-particles numParticles)))
+(define psys19 (with-state (build-particles numParticles)))
+(define psys20 (with-state (build-particles numParticles)))
+(define psys21 (with-state (build-particles numParticles)))
+(define psys22 (with-state (build-particles numParticles)))
+(define psys23 (with-state (build-particles numParticles)))
+(define psys24 (with-state (build-particles numParticles)))
+(define psys25 (with-state (build-particles numParticles)))
+(define psys26 (with-state (build-particles numParticles)))
+(define psys27 (with-state (build-particles numParticles)))
+(define psys28 (with-state (build-particles numParticles)))
+(define psys29 (with-state (build-particles numParticles)))
+(define psys30 (with-state (build-particles numParticles)))
+(define psys31 (with-state (build-particles numParticles)))
 
 (define Psystems (vector
-	(vector psys0 -8 -4 (vector 0.1 0.1 0.1))
-	(vector psys1 -4 0 (vector 0.1 0.1 0.1))
-	(vector psys2 8 -4 (vector 0.1 0.1 0.1))
-	(vector psys3 4 0 (vector 0.1 0.1 0.1))
-	(vector psys4 -12 -6 (vector 0.1 0.1 0.1))
-	(vector psys5 -6 0 (vector 0.1 0.1 0.1))
-	(vector psys6 12 -6 (vector 0.1 0.1 0.1))
-	(vector psys7 6 0 (vector 0.1 0.1 0.1))
-	(vector psys8 1 1 (vector 0.1 0.1 0.1))
-	(vector psys9 -1 -1 (vector 0.1 0.1 0.1))
-	(vector psys10 2 2 (vector 0.1 0.1 0.1))
-	(vector psys11 -2 -2 (vector 0.1 0.1 0.1))
-	(vector psys12 3 3 (vector 0.1 0.1 0.1))
-	(vector psys13 -3 -3 (vector 0.1 0.1 0.1))
-	(vector psys14 4 4 (vector 0.1 0.1 0.1))
-	(vector psys15 -4 -4 (vector 0.1 0.1 0.1))
+	(vector psys0 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys1 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys2 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys3 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys4 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys5 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys6 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys7 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys8 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys9 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys10 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys11 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys12 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys13 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys14 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys15 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
 	
-	(vector psys16 -7 -3 (vector 0.1 0.1 0.1))
-	(vector psys17 -3 -1 (vector 0.1 0.1 0.1))
-	(vector psys18 7 -2 (vector 0.1 0.1 0.1))
-	(vector psys19 3 -1 (vector 0.1 0.1 0.1))
-	(vector psys20 -11 -5 (vector 0.1 0.1 0.1))
-	(vector psys21 -5 -1 (vector 0.1 0.1 0.1))
-	(vector psys22 11 -5 (vector 0.1 0.1 0.1))
-	(vector psys23 5 -1 (vector 0.1 0.1 0.1))
-	;(vector psys24 0 0 (vector 0.1 0.1 0.1))
-	;(vector psys25 -2 -2 (vector 0.1 0.1 0.1))
-	;(vector psys26 3 -4 (vector 0.1 0.1 0.1))
-	;(vector psys27 -4 -4 (vector 0.1 0.1 0.1))
-	;(vector psys28 -3 3 (vector 0.1 0.1 0.1))
-	;(vector psys29 3 -3 (vector 0.1 0.1 0.1))
-	;(vector psys30 -4 4 (vector 0.1 0.1 0.1))
-	;(vector psys31 4 -4 (vector 0.1 0.1 0.1))
+	(vector psys16 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys17 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys18 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys19 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys20 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys21 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys22 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys23 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys24 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys25 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys26 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys27 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys28 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys29 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys30 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
+	(vector psys31 (* 10 (rndval)) (* 10 (rndval)) (rndvec))
 	
 	))
 
@@ -262,10 +263,6 @@
 			
 			
 		)
-		
-		
-		
-		;(begin (display i))
 
 		
 	)
@@ -273,28 +270,10 @@
 )
 
 
-
-
-
-
-
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (every-frame
     ;(begin (display (midi-peek)) (newline))
-    
     (pulse base_dir RedLightness GreenLightness BlueLightness Scale RotX RotY RotZ)
-    ;(mappingSchema base_dir RedLightness GreenLightness BlueLightness Scale RotX RotY RotZ)
 )
-
-
-
-
-
-
-
-
-
